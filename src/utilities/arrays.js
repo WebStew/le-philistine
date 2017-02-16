@@ -1,7 +1,7 @@
 
 export default {
 
-	 getIndexByProperty : function ( collection , property , value ) {
+	 getIndexByProperty ( collection , property , value ) {
 
 		return collection.findIndex ( function  ( item ) {
 
