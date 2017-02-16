@@ -31,6 +31,7 @@ export default class List extends Component {
 				enableEmptySections = { true 									}
 				dataSource 			= { datasource 								}
 				renderRow 			= {( data ) => this.props.setItem ( data 	)}
+				renderSeparator 	= { this.props.setSeparator 				}
 				style 				= {{ flex : 1 								}}
 			/>
 		);

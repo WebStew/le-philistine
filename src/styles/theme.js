@@ -2,7 +2,7 @@
 export default {
 
 	brands 		: [
-		'#01eefd' ,
+		'#01a7fd' ,
 		'#212121' ,
 		'#101010' ,
 		'#000'

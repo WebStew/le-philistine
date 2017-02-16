@@ -18,6 +18,8 @@ export default {
 
 		const url = api.domain + api.endpoint + '?' + api.key + '&filter=categories(490)';
 
+		console.log( url );
+
 		return fetch ( url 	, {
 			method 	: 'GET' ,
 			headers : headers

@@ -36,7 +36,7 @@ export default function (
 				state 	,
 				{
 					loading : false ,
-					data 	: action.data
+					data 	: action.data.Categories
 				}
 			);
 

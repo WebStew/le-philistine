@@ -5,7 +5,7 @@ export default {
 
 	bar : {
 		backgroundColor		: theme.brands [ 3 ] 	,
-		borderBottomColor 	: theme.brands [ 3 ] 	,
+		borderBottomColor 	: theme.brands [ 2 ] 	,
 		borderBottomWidth 	: 1 					,
 		borderLeftColor 	: theme.brands [ 3 ] 	,
 		borderLeftWidth 	: 1 					,

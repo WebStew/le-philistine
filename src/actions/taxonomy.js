@@ -2,28 +2,28 @@
 import constants 	from '../constants/taxonomy';
 import api 			from '../api/taxonomy';
 
-const error = function ( data ) {
+const 	error = function ( data ) {
 
-		return {
-			error 	: data ,
-			type 	: constants.error
+			return {
+				error 	: data ,
+				type 	: constants.error
+			};
+		} ,
+
+		receive = function ( data ) {
+
+			return {
+				data 	: data ,
+				type 	: constants.receive
+			};
+		} ,
+
+		request = function () {
+
+			return {
+				type 	: constants.request
+			};
 		};
-	} ,
-
-	receive = function ( data ) {
-
-		return {
-			data 	: data ,
-			type 	: constants.receive
-		};
-	} ,
-
-	request = function () {
-
-		return {
-			type 	: constants.request
-		};
-	};
 
 export default {
 
@@ -35,8 +35,6 @@ export default {
 			dispatch ( request ());
 
 			return api.get ().then ( function ( response ) {
-
-				console.log ( 'THIS IS THE API RESPONSE' , response )
 
 				return response.json ();
 			})

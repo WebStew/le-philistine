@@ -1,39 +1,43 @@
 
 import React , 	{ 	Component 	} 	from 'react';
+import 			{ 	connect 	} 	from 'react-redux';
 import 			{ 	View , 
 					Text		} 	from 'react-native';
-import 			{ 	Actions 	} 	from 'react-native-router-flux';
+import actions 						from '../actions/taxonomy';
 import List 						from '../components/utilities/list-view';
-import Filter 						from '../components/filters/filter';
+import Loader 						from '../components/utilities/loader';
+import Category 					from '../components/categories/category';
 import styleScene 					from '../styles/scenes';
+import styleCategory 				from '../styles/categories';
 import styleSeparators 				from '../styles/separators';
-//import styleCategory 				from '../styles/filters';	
 
-export default class Filters extends Component {
+export default connect (
+
+	state => ({
+		categories : state.taxonomy
+	})
+
+) ( class Categories extends Component {
 
 	constructor ( props ) {
 
 		super ( props )
 
-		console.log ( this.props )
-
 		this.setItem 		= this.setItem.bind 		( this );
 		this.setSeparator 	= this.setSeparator.bind 	( this );
 	}
 
-	componentWillMount () {
+	componentDidMount () {
 
-		Actions.refresh ({
-			title : this.props.category.Name
-		});
+		 this.props.dispatch ( actions.get ());
 	}
 	
 	setItem ( data ) {
 
 		return ( 
-			<Filter 
-				filter 		= { data 					}
-				dispatch 	= { this.props.dispatch 	}
+			<Category 
+				category = { data 					}
+				dispatch = { this.props.dispatch 	}
 			/>
 		);
 	}
@@ -52,13 +56,17 @@ export default class Filters extends Component {
 
 		return (
 			<View style = { styleScene.default }>
-
+				<Loader
+					loading = { this.props.categories.loading 	}
+					size 	= 'large'
+				/>
 				<List 
-					items 			= { this.props.category.Refinements }
+					items 			= { this.props.categories.data 		}
+					loading 		= { this.props.categories.loading 	}
 					setItem 		= { this.setItem 					}
 					setSeparator 	= { this.setSeparator 				}
 				/>
 			</View>
 		);
 	}
-};
+});

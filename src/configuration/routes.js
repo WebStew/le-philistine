@@ -6,62 +6,57 @@ import 			{ 	Actions ,
 					Reducer ,
 					Scene		} 	from 'react-native-router-flux';
 import 			{ 	connect 	} 	from 'react-redux';
-
-//import Categories 					from '../screens/categories';
-//import Catalog 						from '../screens/catalog';
-
+import language 					from '../configuration/language';
+import routes 						from '../configuration/route-names';
 import TabIcon 						from '../components/utilities/tab-icon';
+import Categories 					from '../screens/categories';
 import Filters 						from '../screens/filters';
-import Products 					from '../screens/products';
-import style 						from '../styles/navigation';
-
+import Catalogue 					from '../screens/catalogue';
 import styleNavigation 				from '../styles/navigation';
 import styleTabs 					from '../styles/tabs';
 
 const scenes = Actions.create (
 		<Scene 
-			key = 'Root'
+			key = { routes.root }
 		>
 			<Scene 
-				key 	= 'navigation' 
-				tabs 	= { true }
-				tabBarStyle = { styleTabs.bar }
+				key 		= { routes.stories.primary 	}
+				tabs 		= { true 					}
+				tabBarStyle = { styleTabs.bar 			}
 			>
 				<Scene 
-					icon 	= { TabIcon }
-					initial = { true } 
-					key 	= 'filters' 
-					title 	= 'Filters' 
+					icon 		= { TabIcon 					}
+					initial 	= { true 						} 
+					key 		= { routes.taxonomy.default 	}  
+					onRight 	= {() => alert ( 'Right button' )} 
+					rightTitle 	= { language.states.filters 	}
+					title 		= { language.screens.taxonomy 	}
 				>
 					<Scene  
-						component 	= { Filters } 
-						key 		= 'filter-results'
-						onRight 	= {() => alert ( 'Right button' )} 
-						rightTitle 	= 'Action'
-						title 		= 'Categories' 
+						component 	= { Categories 					} 
+						key 		= { routes.taxonomy.results 	}
+						title 		= { language.screens.categories } 
 					/>
 					<Scene  
 						component 	= { Filters } 
-						key 		= 'filter-details'
-						title 		= 'Set a filter'
+						key 		= { routes.taxonomy.filters 	}
+						title 		= { language.screens.filters 	}
 					/>
 				</Scene>
 				<Scene 
-					icon 	= { TabIcon }
-					key 	= 'wines' 
-					title 	= 'Wines' 
+					icon 	= { TabIcon 					}
+					key 	= { routes.catalogue.default 	}
+					title 	= { language.screens.catalogue 	}
 				>
 					<Scene 
-						key 		= 'product-results' 
-						component 	= { Products }  
-						leftTitle 	= 'Action'
-						onLeft 		= {() => alert ( 'Left button!' )}
-						title 		= 'Results' 
+						component 	= { Catalogue 					}
+						key 		= { routes.catalogue.results 	}
+						title 		= { language.screens.catalogue 	}
 					/>
-					<Scene 
-						key 		= 'product-details' 
-						component 	=  { Products } 
-						title 		= 'Details'
+					<Scene  
+						component 	= { Catalogue 					}
+						key 		= { routes.catalogue.detail 	} 	
+						title 		= { language.screens.catalogue 	}
 					/>
 				</Scene>
 			</Scene>
