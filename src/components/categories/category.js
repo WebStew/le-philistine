@@ -1,8 +1,8 @@
 
 import React , 	{ 	Component 			} 	from 'react';
-import 			{ 	Text , 
-					View ,
-					TouchableOpacity 	} 	from 'react-native';
+import 			{ 	Text 				, 
+					TouchableOpacity 	,
+					View 				} 	from 'react-native';
 import 			{ 	Actions 			} 	from 'react-native-router-flux';
 import Image 								from '../utilities/image';
 import images 								from '../../configuration/images';
@@ -23,7 +23,10 @@ export default class Item extends Component {
 	setCategory () {
 		
 		Actions [ routes.taxonomy.filters ] ({
-			category : this.props.category
+			category : {
+				id 		: this.props.category.id ,
+				name 	: this.props.category.name
+			}
 		});
 	}
 
@@ -35,10 +38,10 @@ export default class Item extends Component {
 					style 	= { styleCategory.item 		} 
 					onPress = { this.setCategory 		}>
 					<Text style = { styleCategory.text 	}>
-						{ this.props.category.Name 		}
+						{ this.props.category.name 		}
 					</Text>
 					<Image 
-						label 	= { language.actions.display.on + ' ' + this.props.category.Name }
+						label 	= { language.actions.display.on + ' ' + this.props.category.name }
 						source 	= { images.chevrons.right 	}
 						style 	= { styleImage.icons.medium }
 					/>

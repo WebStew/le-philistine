@@ -1,5 +1,6 @@
 
 import React , 	{ 	Component 	} 	from 'react';
+import 			{ 	connect 	} 	from 'react-redux';
 import 			{ 	View , 
 					Text		} 	from 'react-native';
 import 			{ 	Actions 	} 	from 'react-native-router-flux';
@@ -7,32 +8,36 @@ import List 						from '../components/utilities/list-view';
 import Filter 						from '../components/filters/filter';
 import styleScene 					from '../styles/scenes';
 import styleSeparators 				from '../styles/separators';
-//import styleCategory 				from '../styles/filters';	
+import object 						from '../utilities/object';
 
-export default class Filters extends Component {
+export default connect (
+
+	state => ({
+		filters : state.filters
+	})
+
+) ( class Filters extends Component {
 
 	constructor ( props ) {
 
 		super ( props )
 
-		console.log ( this.props )
-
-		this.setItem 		= this.setItem.bind 		( this );
+		this.setFilter 		= this.setFilter.bind 		( this );
 		this.setSeparator 	= this.setSeparator.bind 	( this );
 	}
 
 	componentWillMount () {
 
 		Actions.refresh ({
-			title : this.props.category.Name
+			title : this.props.category.name
 		});
 	}
 	
-	setItem ( data ) {
+	setFilter ( filter ) {
 
 		return ( 
 			<Filter 
-				filter 		= { data 					}
+				filter 		= { filter 					}
 				dispatch 	= { this.props.dispatch 	}
 			/>
 		);
@@ -50,15 +55,18 @@ export default class Filters extends Component {
 	
 	render () {
 
+		const 	category 	= this.props.category.id ,
+				filters 	= object.filter ( this.props.filters , filter => filter.category === category );
+
 		return (
 			<View style = { styleScene.default }>
 
 				<List 
-					items 			= { this.props.category.Refinements }
-					setItem 		= { this.setItem 					}
-					setSeparator 	= { this.setSeparator 				}
+					data			= { filters 			}
+					setRow 			= { this.setFilter 		}
+					setSeparator 	= { this.setSeparator 	}
 				/>
 			</View>
 		);
 	}
-};
+});

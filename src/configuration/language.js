@@ -19,7 +19,7 @@ const 	language 	= null || 'en' ,
 				} ,
 
 				screens : {
-					catalogue 	: 'Wines' 			,
+					catalogue 	: 'Catalogue' 		,
 					categories 	: 'Find by' 		,
 					filter 		: 'Set a filter' 	,
 					taxonomy 	: 'Categories'

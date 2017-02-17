@@ -1,16 +1,11 @@
 
 import constants 		from '../constants/taxonomy';
-import schematics 		from '../schema/taxonomy';
 
 export default function (
 
 	state 	= {
-		categories 	: null 	,
-		data  		: [] 	,
 		error 		: null 	,
-		filters 	: null 	,
 		loading 	: false
-
 	} , 
 
 	action 	= {}
@@ -34,16 +29,10 @@ export default function (
 
 		case constants.receive 	:
 
-			const normalized = schematics.get ( action.data.Categories );
-			console.log ( normalized.entities.filters );
-
 			return Object.assign (
 				{} 		,
 				state 	,
 				{
-					categories 	: normalized.entities.categories 	, 
-					data 		: action.data.Categories 			,
-					filters 	: normalized.entities.filters 		,
 					loading 	: false 
 				}
 			);

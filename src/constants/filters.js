@@ -4,6 +4,7 @@
  * @type {Object}
  */
 export default {
-	reset 	: 'filter:reset' ,
-	set 	: 'filter:set'
+	reset 	: 'filters:reset' 	,
+	set 	: 'filters:set' 	,
+	setup 	: 'filters:setup'
 };

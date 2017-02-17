@@ -8,18 +8,14 @@ export default class List extends Component {
 
 		super ( props );
 
+		// All datasources are flat maps
 		this.datasource = new ListView.DataSource ({
-			rowHasChanged : this.hasChanged
+			getRowData 		: ( object 	, section , row ) => object [ section ] [ row ] ,
+			rowHasChanged 	: ( current , updated 		) => current !== updated
 		});
 	}
 
-	hasChanged ( current , updated ) {
-		return current !== updated;
-	}
-
 	render () {
-
-		const datasource = this.datasource.cloneWithRows ( this.props.items );
 
 		// If we're loading the content don't render an empty list
 		if ( this.props.loading ) {
@@ -28,11 +24,10 @@ export default class List extends Component {
 
 		return (
 			<ListView
-				enableEmptySections = { true 									}
-				dataSource 			= { datasource 								}
-				renderRow 			= {( data ) => this.props.setItem ( data 	)}
-				renderSeparator 	= { this.props.setSeparator 				}
-				style 				= {{ flex : 1 								}}
+				enableEmptySections = { true 											}
+				dataSource 			= { this.datasource.cloneWithRows ( this.props.data )}
+				renderRow 			= {( data ) => this.props.setRow ( data 			)}
+				renderSeparator 	= { this.props.setSeparator 						}
 			/>
 		);
 	}	

@@ -1,40 +1,51 @@
 
 import constants 	from '../constants/filters';
 
-let _filters = {};
-
 export default function (
 
-	state 	= [] , 
+	state 	= {} , 
 	action 	= {}
 
 ) {
 
 	switch ( action.type ) {
 
-		case constants.reset 	:
-
-			delete _filters [ action.filter.id ];
+		case constants.setup :
 
 			return Object.assign (
 				{} 		,
 				state 	,
-				 _filters
+				action.filters
 			);
 
 		break;
 
-		case constants.set 	:
-
-			_filters [ action.filter.id ] = {
-				id 		: action.filter.id 	,
-				name 	: action.filter.name 
-			}
+		case constants.reset :
 
 			return Object.assign (
 				{} 		,
 				state 	,
-				 _filters
+				{
+					[ action.id ] : {
+						...state [ action.id ] ,
+						on : false
+					}
+				}
+			);
+
+		break;
+
+		case constants.set :
+
+			return Object.assign (
+				{} 		,
+				state 	,
+				{
+					[ action.id ] : {
+						...state [ action.id ] ,
+						on : true
+					}
+				}
 			);
 
 		break;

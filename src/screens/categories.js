@@ -2,7 +2,7 @@
 import React , 	{ 	Component 	} 	from 'react';
 import 			{ 	connect 	} 	from 'react-redux';
 import 			{ 	View , 
-					Text		} 	from 'react-native';
+					ListView	} 	from 'react-native';
 import actions 						from '../actions/taxonomy';
 import List 						from '../components/utilities/list-view';
 import Loader 						from '../components/utilities/loader';
@@ -14,7 +14,8 @@ import styleSeparators 				from '../styles/separators';
 export default connect (
 
 	state => ({
-		categories : state.taxonomy
+		categories 	: state.categories ,
+		taxonomy 	: state.taxonomy
 	})
 
 ) ( class Categories extends Component {
@@ -23,7 +24,7 @@ export default connect (
 
 		super ( props )
 
-		this.setItem 		= this.setItem.bind 		( this );
+		this.setCategory 	= this.setCategory.bind 	( this );
 		this.setSeparator 	= this.setSeparator.bind 	( this );
 	}
 
@@ -32,11 +33,11 @@ export default connect (
 		 this.props.dispatch ( actions.get ());
 	}
 	
-	setItem ( data ) {
+	setCategory ( category ) {
 
 		return ( 
 			<Category 
-				category = { data 					}
+				category = { category 				}
 				dispatch = { this.props.dispatch 	}
 			/>
 		);
@@ -57,14 +58,14 @@ export default connect (
 		return (
 			<View style = { styleScene.default }>
 				<Loader
-					loading = { this.props.categories.loading 	}
+					loading = { this.props.taxonomy.loading }
 					size 	= 'large'
 				/>
 				<List 
-					items 			= { this.props.categories.data 		}
-					loading 		= { this.props.categories.loading 	}
-					setItem 		= { this.setItem 					}
-					setSeparator 	= { this.setSeparator 				}
+					data 			= { this.props.categories 		}
+					loading 		= { this.props.taxonomy.loading }
+					setRow 			= { this.setCategory 			}
+					setSeparator 	= { this.setSeparator 			}
 				/>
 			</View>
 		);

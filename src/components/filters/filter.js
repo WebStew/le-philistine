@@ -20,14 +20,12 @@ export default class Filter extends Component {
 	}
 
 	setFilter () {
-		
-		const filter = this.props.filter;
-		// Actions [ 'category-details' ] ({
-		// 	category : this.props.category
-		// });
-		this.props.dispatch ( actions.set ({
-			id 		: filter.id ,
-			name 	: filter.name
+
+		let filter = this.props.filter ,
+			action = filter.on ? 'reset' : 'set';
+
+		this.props.dispatch ( actions [ action ] ({
+			id : filter.id
 		}));
 	}
 
@@ -44,12 +42,12 @@ export default class Filter extends Component {
 					style 	= { styleFilter.item 		} 
 					onPress = { this.setFilter 			}>
 					<Text style = { styleFilter.text 	}>
-						{ filter.Name 		}
+						{ filter.name }
 					</Text>
 					<Image 
-						label 	= { label + ' ' + filter.Name }
-						source 	= { source 	}
-						style 	= { styleImage.icons.medium }
+						label 	= { label + ' ' + filter.name 	}
+						source 	= { source 						}
+						style 	= { styleImage.icons.medium 	}
 					/>
 				</TouchableOpacity>
 			</View>

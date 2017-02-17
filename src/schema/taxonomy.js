@@ -8,7 +8,9 @@ const filter = new schema.Entity ( 'filters' ,
 		{ 
 			idAttribute 	: 'Id' ,
 			processStrategy : ( value , parent , key ) => {
+
 				let rewrite = object.keysToLowerCase ( value ) 
+				
 				return { ...rewrite , category : parent.id };
 			}
 		}
@@ -16,13 +18,18 @@ const filter = new schema.Entity ( 'filters' ,
 
 	category = new schema.Entity ( 'categories' , 
 		{ 
-			refinements : [ filter ]
+			filters : [ filter ]
 		} , 
 		{ 
 			idAttribute : 'Id' ,
 			processStrategy : ( value , parent , key ) => {
-				let rewrite = object.keysToLowerCase ( value ); 
-				return { ...rewrite };
+
+				let rewrite = object.keysToLowerCase ( value )
+				
+				rewrite.filters = rewrite.refinements;
+				delete rewrite.refinements;
+
+				return rewrite;
 			}
 		}
 	);
@@ -30,8 +37,7 @@ const filter = new schema.Entity ( 'filters' ,
 export default {
  
 	get ( data ) {
-		var test = normalize ( data , [ category ])
-		console.log ( 'TEST' , test );
+
 		return normalize ( data , [ category ]);
 	}
 

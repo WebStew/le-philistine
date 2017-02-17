@@ -3,24 +3,27 @@ import constants from '../constants/filters';
 
 export default {
 
-	reset ( data ) {
+	reset ( filter ) {
 
 		return {
-			filter 	: {
-				id 		: data.id
-			} ,
+			id 		: filter.id ,
 			type 	: constants.reset
 		};
 	} ,
 
-	set ( data ) {
+	set ( filter ) {
 
 		return {
-			filter : {
-				id 		: data.id ,
-				name 	: data.name
-			} ,
+			id 		: filter.id ,
 			type 	: constants.set
+		};
+	} ,
+
+	setup ( filters ) {
+
+		return {
+			filters : filters ,
+			type 	: constants.setup
 		};
 	}
 };
