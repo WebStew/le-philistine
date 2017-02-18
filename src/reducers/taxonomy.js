@@ -4,7 +4,7 @@ import constants 		from '../constants/taxonomy';
 export default function (
 
 	state 	= {
-		error 		: null 	,
+		error 		: null ,
 		loading 	: false
 	} , 
 

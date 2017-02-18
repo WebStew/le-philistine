@@ -5,7 +5,7 @@ const 	environment 	= null || 'development' ,
 			development : {
 				API 	: {
 					key : 'apikey=07c2ddd3e8d368c86fee55e5db79ea78' ,
-					URL : 'http://services.wine.com/api/beta2/service.svc/JSON'
+					URL : 'https://services.wine.com/api/beta2/service.svc/JSON'
 				}
 			}
 		};

@@ -81,10 +81,11 @@ export default connect () ( class Routes extends Component {
 
 	render () {
 		
+		// drawerImage 		= {{ uri : null 				}}
+		
 		return (
 			<Router
 				createReducer 		= { this.reducer.bind ( this 	)}
-				drawerImage 		= {{ uri : null 				}}
 				navigationBarStyle 	= { styleNavigation.bar 		}
 				scenes 				= { scenes 						}
 				titleStyle 			= { styleNavigation.title 		}
