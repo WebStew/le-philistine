@@ -6,23 +6,30 @@ const 	language 	= null || 'en' ,
 
 				actions : {
 					display : {
-						on : 'Show'
-					} ,
-					filter 	: {
-						on 	: 'Add filter for wines by' ,
-						off : 'Remove filter for wines by'
+						on 	: 'Show'
 					}
 				} ,
-
-				states	: {
-					filters : 'Filters'
+				
+				categories 	: {
+					screen 	: 'Find by' 
 				} ,
 
-				screens : {
-					catalogue 	: 'Catalogue' 		,
-					categories 	: 'Find by' 		,
-					filter 		: 'Set a filter' 	,
-					taxonomy 	: 'Categories'
+				catalogue 	: {
+					screen 	: 'Catalogue'
+				} ,
+
+				filters : {
+					actions 	: {
+						on 		: 'Add filter for wines by' ,
+						off 	: 'Remove filter for wines by' 
+					} ,
+					drawer 		: 'Filters' 		,
+					screen 		: 'Set a filter' 	,
+					unavailable : 'No filters have been setup'
+				} ,
+
+				taxonomy : {
+					screen : 'Categories'
 				}
 			}
 		};

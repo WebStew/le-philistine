@@ -10,7 +10,7 @@ import language 					from '../configuration/language';
 import routes 						from '../configuration/route-names';
 import TabIcon 						from '../components/utilities/tab-icon';
 import Categories 					from '../screens/categories';
-import Drawer 						from '../screens/drawer';
+import Drawer 						from '../screens/filters-drawer';
 import Filters 						from '../screens/filters';
 import Catalogue 					from '../screens/catalogue';
 import styleNavigation 				from '../styles/navigation';
@@ -20,7 +20,10 @@ const scenes = Actions.create (
 		<Scene 
 			key = { routes.root }
 		>
-			<Scene key="drawer" component={Drawer} open={false} >
+			<Scene 	key 		= { routes.drawers.filters 	} 
+					component 	= { Drawer 					} 
+					open 		= { false 					}
+			>
 				<Scene 
 					key 		= { routes.stories.primary 	}
 					tabs 		= { true 					}
@@ -30,35 +33,35 @@ const scenes = Actions.create (
 						icon 		= { TabIcon 					}
 						initial 	= { true 						} 
 						key 		= { routes.taxonomy.default 	}  
-						onRight 	= {() => alert ( 'Right button' )} 
-						rightTitle 	= { language.states.filters 	}
-						title 		= { language.screens.taxonomy 	}
+						onRight 	= {() => Actions.refresh ({ key : routes.drawers.filters , open : true })} 
+						rightTitle 	= { language.filters.drawer 	}
+						title 		= { language.taxonomy.screen 	}
 					>
 						<Scene  
 							component 	= { Categories 					} 
 							key 		= { routes.taxonomy.results 	}
-							title 		= { language.screens.categories } 
+							title 		= { language.categories.screen 	} 
 						/>
 						<Scene  
-							component 	= { Filters } 
-							key 		= { routes.taxonomy.filters 	}
-							title 		= { language.screens.filters 	}
+							component 	= { Filters 				} 
+							key 		= { routes.taxonomy.filters }
+							title 		= { language.filters.screen }
 						/>
 					</Scene>
 					<Scene 
 						icon 	= { TabIcon 					}
 						key 	= { routes.catalogue.default 	}
-						title 	= { language.screens.catalogue 	}
+						title 	= { language.catalogue.screen 	}
 					>
 						<Scene 
 							component 	= { Catalogue 					}
 							key 		= { routes.catalogue.results 	}
-							title 		= { language.screens.catalogue 	}
+							title 		= { language.catalogue.screen 	}
 						/>
 						<Scene  
 							component 	= { Catalogue 					}
 							key 		= { routes.catalogue.detail 	} 	
-							title 		= { language.screens.catalogue 	}
+							title 		= { language.catalogue.screen 	}
 						/>
 					</Scene>
 				</Scene>
@@ -81,11 +84,10 @@ export default connect () ( class Routes extends Component {
 
 	render () {
 		
-		// drawerImage 		= {{ uri : null 				}}
-		
 		return (
 			<Router
 				createReducer 		= { this.reducer.bind ( this 	)}
+				drawerImage 		= {{ uri : null 				}}
 				navigationBarStyle 	= { styleNavigation.bar 		}
 				scenes 				= { scenes 						}
 				titleStyle 			= { styleNavigation.title 		}

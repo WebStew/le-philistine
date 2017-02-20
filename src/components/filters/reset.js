@@ -10,43 +10,37 @@ import language 							from '../../configuration/language';
 import styleImage 							from '../../styles/images';
 import styleFilter 							from '../../styles/filters';
 
-export default class Filter extends Component {
+export default class Reset extends Component {
 
 	constructor ( props ) {
 
 		super ( props );
-		this.setFilter = this.setFilter.bind ( this );
+		this.resetFilter = this.resetFilter.bind ( this );
 	}
 
-	setFilter () {
+	resetFilter () {
 
-		let filter = this.props.filter ,
-			action = filter.on ? 'reset' : 'set';
-
-		this.props.dispatch ( actions [ action ] ({
-			id : filter.id
+		this.props.dispatch ( actions [ 'reset' ] ({
+			id : this.props.filter.id
 		}));
 	}
 
 	render () {
 
-		const 	filter 	= this.props.filter ,
-				label 	= filter.on ? language.filters.actions.off 	: language.filters.actions.on ,
-				source 	= filter.on ? images.checkbox.on 			: images.checkbox.off;
+		const 	filter 	= this.props.filter;
 
-		return (
-
+		return (			
 			<View>
 				<TouchableOpacity 
-					style 	= { styleFilter.item 		} 
-					onPress = { this.setFilter 			}>
+					style 	= { styleFilter.reset.view 	} 
+					onPress = { this.resetFilter 		}>
 					<Text style = { styleFilter.text 	}>
 						{ filter.name }
 					</Text>
 					<Image 
-						label 	= { label + ' ' + filter.name 	}
-						source 	= { source 						}
-						style 	= { styleImage.icons.small 		}
+						label 	= { language.filters.actions.off  + ' ' + filter.name 	}
+						source 	= { images.close.on 									}
+						style 	= { styleImage.icons.small 								}
 					/>
 				</TouchableOpacity>
 			</View>

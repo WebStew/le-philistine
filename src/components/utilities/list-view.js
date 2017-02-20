@@ -17,8 +17,8 @@ export default class List extends Component {
 
 	render () {
 
-		// If we're loading the content don't render an empty list
-		if ( this.props.loading ) {
+		// If we're loading the content or have an empty list
+		if ( this.props.loading || Object.keys ( this.props.data ).length === 0 ) {
 			return null;
 		}
 

@@ -43,7 +43,7 @@ export default class Item extends Component {
 					<Image 
 						label 	= { language.actions.display.on + ' ' + this.props.category.name }
 						source 	= { images.chevrons.right 	}
-						style 	= { styleImage.icons.medium }
+						style 	= { styleImage.icons.small 	}
 					/>
 				</TouchableOpacity>
 			</View>

@@ -1,9 +1,14 @@
 
 export default {
+
 	catalogue 	: {
 		default : 'product' 		,
 		detail 	: 'product-detail' 	,
 		results : 'product-results'
+	} ,
+
+	drawers 	: {
+		filters : 'filter-drawer'
 	} ,
 
 	stories 	: {
