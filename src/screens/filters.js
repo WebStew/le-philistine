@@ -22,7 +22,7 @@ export default connect (
 
 		super ( props )
 
-		this.setFilter 		= this.setFilter.bind 		( this );
+		this.renderFilter 	= this.renderFilter.bind 	( this );
 		this.setSeparator 	= this.setSeparator.bind 	( this );
 	}
 
@@ -33,12 +33,12 @@ export default connect (
 		});
 	}
 	
-	setFilter ( filter ) {
+	renderFilter ( filter ) {
 
 		return ( 
 			<Filter 
-				filter 		= { filter 					}
-				dispatch 	= { this.props.dispatch 	}
+				filter 		= { filter 				}
+				dispatch 	= { this.props.dispatch }
 			/>
 		);
 	}
@@ -63,7 +63,7 @@ export default connect (
 
 				<List 
 					data			= { filters 			}
-					setRow 			= { this.setFilter 		}
+					setRow 			= { this.renderFilter 	}
 					setSeparator 	= { this.setSeparator 	}
 				/>
 			</View>

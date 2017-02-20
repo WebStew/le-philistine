@@ -3,38 +3,71 @@ import React , 	{ 	Component 	} 	from 'react';
 import 			{ 	connect 	} 	from 'react-redux';
 import 			{ 	View , 
 					Text		} 	from 'react-native';
-//import 			{ 	Actions 	} 	from 'react-native-router-flux';
-
+import actions 						from '../actions/catalogue';
+import List 						from '../components/utilities/list-view';
 import Loader 						from '../components/utilities/loader';
-//import actions 						from '../actions/boards';
-import style 						from '../styles/scenes';
+import Product 						from '../components/catalogue/product';
+import styleScene 					from '../styles/scenes';
+import styleSeparators 				from '../styles/separators';
+import object 						from '../utilities/object';
 
 export default connect (
 
 	state => ({
-		filters : state.taxonomy
+		filters 	: state.filters ,
+		catalogue 	: state.catalogue
 	})
 
-) ( class Filters extends Component {
+) ( class Catalogue extends Component {
 
-	componentDidMount () {
+	constructor ( props ) {
 
-		//  Actions.refresh ({
-		// 	 title : this.props.boards.model [ this.props.id ].name
-		//  });
+		super ( props );
 
-		 //this.props.dispatch ( actions.get ( this.props.board.id ));
-		 
-		 //this.props.dispatch ( actions.get ({ id : this.props.board.id }));
+		// Create an array of the current filter ids
+		const filters = Object.keys ( object.filter ( this.props.filters , filter => filter.on === true ));
+
+		this.props.dispatch ( actions.get ({ filters : filters }));
+
+		this.renderProduct = this.renderProduct.bind ( this );
 	}
-	
-	render () {
+
+	// componentWillUpdate () {
+	// }
+
+	renderProduct ( product ) {
+
+		return ( 
+			<Product 
+				product = { product 				}
+				dispatch = { this.props.dispatch 	}
+			/>
+		);
+	}
+
+	setSeparator ( section , row , highlighted ) {
 
 		return (
-			<View style = { style.default }>
+			<View
+				key 	= { section + '-' + row 	}
+				style 	= { styleSeparators.default }
+			/>
+		);
+	}
+	
+	render () {		
+
+		return (
+			<View style = { styleScene.default }>
 				<Loader
-					loading = { true }
+					loading = { this.props.catalogue.loading }
 					size 	= 'large'
+				/>
+				<List 
+					data 			= { this.props.catalogue 			}
+					loading 		= { this.props.catalogue.loading 	}
+					setRow 			= { this.renderProduct 				}
+					setSeparator 	= { this.setSeparator 				}
 				/>
 			</View>
 		);

@@ -3,8 +3,8 @@ import React , 	{ 	Component 			} 	from 'react';
 import 			{ 	Text , 
 					View ,
 					TouchableOpacity 	} 	from 'react-native';
-import Image 								from '../utilities/image';
 import actions 								from '../../actions/filters';
+import Image 								from '../utilities/image';
 import images 								from '../../configuration/images';
 import language 							from '../../configuration/language';
 import styleImage 							from '../../styles/images';
@@ -17,7 +17,7 @@ export default class Filter extends Component {
 		super ( props );
 		this.setFilter = this.setFilter.bind ( this );
 	}
-
+	
 	setFilter () {
 
 		let filter = this.props.filter ,
@@ -39,7 +39,8 @@ export default class Filter extends Component {
 			<View>
 				<TouchableOpacity 
 					style 	= { styleFilter.item 		} 
-					onPress = { this.setFilter 			}>
+					onPress = { this.setFilter 			}
+				>
 					<Text style = { styleFilter.text 	}>
 						{ filter.name }
 					</Text>

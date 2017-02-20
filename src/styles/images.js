@@ -3,9 +3,14 @@ export default {
 
 	icons : {
 
-		medium 	: {
+		large 	: {
 			height 	: 32 ,
 			width 	: 32
+		} ,
+
+		medium 	: {
+			height 	: 24 ,
+			width 	: 24
 		} ,
 
 		small 	: {

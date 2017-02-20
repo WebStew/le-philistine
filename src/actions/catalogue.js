@@ -1,9 +1,7 @@
 
-import api 			from '../api/taxonomy';
-import constants 	from '../constants/taxonomy';
-import schematics 	from '../schema/taxonomy';
-import filters 		from '../actions/filters';
-import categories 	from '../actions/categories';
+import api 			from '../api/catalogue';
+import constants 	from '../constants/catalogue';
+import schematics 	from '../schema/catalogue';
 
 const 	error = function ( data ) {
 
@@ -29,24 +27,23 @@ const 	error = function ( data ) {
 
 export default {
 
-	get () {
+	get ( parameters ) {
 
 		return function ( dispatch ) {
 
 			dispatch ( request ());
 
-			return api.get ().then ( function ( response ) {
+			return api.get ( parameters ).then ( function ( response ) {
 
 				return response.json ();
 				
 			}).then ( function ( data ) {
 
 				// Normalise the data
-				const normalized = schematics.get ( data.Categories );
+				const normalized = schematics.get ( data.Products.List );
 
-				dispatch ( filters.setup 	( normalized.entities.filters 		));
-				dispatch ( categories.setup ( normalized.entities.categories 	));
-				dispatch ( receive 	());
+				console.log ( 'NORMALISED' , normalized )
+				dispatch ( receive 	( data ));
 
 			}).catch ( data => dispatch ( error ( data )));
 		}

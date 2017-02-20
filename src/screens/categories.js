@@ -23,8 +23,7 @@ export default connect (
 	constructor ( props ) {
 
 		super ( props )
-
-		this.setCategory 	= this.setCategory.bind 	( this );
+		this.renderCategory = this.renderCategory.bind 	( this );
 		this.setSeparator 	= this.setSeparator.bind 	( this );
 	}
 
@@ -33,7 +32,7 @@ export default connect (
 		 this.props.dispatch ( actions.get ());
 	}
 	
-	setCategory ( category ) {
+	renderCategory ( category ) {
 
 		return ( 
 			<Category 
@@ -64,7 +63,7 @@ export default connect (
 				<List 
 					data 			= { this.props.categories 		}
 					loading 		= { this.props.taxonomy.loading }
-					setRow 			= { this.setCategory 			}
+					setRow 			= { this.renderCategory 		}
 					setSeparator 	= { this.setSeparator 			}
 				/>
 			</View>
