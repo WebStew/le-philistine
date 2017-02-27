@@ -15,7 +15,8 @@ const 	language 	= null || 'en' ,
 				} ,
 
 				catalogue 	: {
-					screen 	: 'Catalogue'
+					screen 	: 'Catalogue' ,
+					detail 	: 'Product Details'
 				} ,
 
 				filters : {

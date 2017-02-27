@@ -9,10 +9,11 @@ import 			{ 	connect 	} 	from 'react-redux';
 import language 					from '../configuration/language';
 import routes 						from '../configuration/route-names';
 import TabIcon 						from '../components/utilities/tab-icon';
+import Catalogue 					from '../screens/catalogue';
 import Categories 					from '../screens/categories';
 import Drawer 						from '../screens/filters-drawer';
 import Filters 						from '../screens/filters';
-import Catalogue 					from '../screens/catalogue';
+import Product 						from '../screens/product';
 import styleNavigation 				from '../styles/navigation';
 import styleTabs 					from '../styles/tabs';
 
@@ -59,9 +60,9 @@ const scenes = Actions.create (
 							title 		= { language.catalogue.screen 	}
 						/>
 						<Scene  
-							component 	= { Catalogue 					}
+							component 	= { Product 					}
 							key 		= { routes.catalogue.detail 	} 	
-							title 		= { language.catalogue.screen 	}
+							title 		= { language.catalogue.detail 	}
 						/>
 					</Scene>
 				</Scene>

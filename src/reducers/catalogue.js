@@ -4,9 +4,11 @@ import constants 		from '../constants/catalogue';
 export default function (
 
 	state 	= {
-		catalogue 	: {} 	,
 		error 		: null 	,
-		loading 	: false
+		loading 	: false ,
+		offset 		: 0 	,
+		products 	: {} 	,
+		total 		: 0
 	} , 
 
 	action 	= {}
@@ -34,7 +36,10 @@ export default function (
 				{} 		,
 				state 	,
 				{
-					loading 	: false 
+					loading 	: false 			,
+					offset 		: action.offset 	,
+					products 	: action.products 	,
+					total 		: action.total
 				}
 			);
 

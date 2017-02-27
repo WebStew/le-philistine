@@ -11,10 +11,13 @@ const 	error = function ( data ) {
 			};
 		} ,
 
-		receive = function () {
+		receive = function ( data ) {
 
 			return {
-				type 	: constants.receive
+				offset 		: data.offset 		,
+				products 	: data.products 	,
+				total 		: data.total 		,
+				type 		: constants.receive
 			};
 		} ,
 
@@ -37,13 +40,15 @@ export default {
 
 				return response.json ();
 				
-			}).then ( function ( data ) {
+			}).then ( function ( response ) {
 
-				// Normalise the data
-				const normalized = schematics.get ( data.Products.List );
+				const normalised = schematics.get ( response.Products.List );
 
-				console.log ( 'NORMALISED' , normalized )
-				dispatch ( receive 	( data ));
+				dispatch ( receive 	({
+					offset 		: response.Products.Offset 		,
+					products 	: normalised.entities.catalogue ,
+					total 		: response.Products.Total
+				}));
 
 			}).catch ( data => dispatch ( error ( data )));
 		}

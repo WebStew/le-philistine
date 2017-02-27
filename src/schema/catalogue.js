@@ -4,8 +4,9 @@ import { 	normalize ,
 import 		object 			from '../utilities/object';
 
 const catalogue = new schema.Entity ( 'catalogue' , 
+		{} ,
 		{ 
-			idAttribute : 'Id' ,
+			idAttribute 	: 'Id' ,
 			processStrategy : ( value , parent , key ) => {
 
 				let rewrite = object.keysToLowerCase ( value )

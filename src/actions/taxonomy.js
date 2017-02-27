@@ -42,10 +42,10 @@ export default {
 			}).then ( function ( data ) {
 
 				// Normalise the data
-				const normalized = schematics.get ( data.Categories );
+				const normalised = schematics.get ( data.Categories );
 
-				dispatch ( filters.setup 	( normalized.entities.filters 		));
-				dispatch ( categories.setup ( normalized.entities.categories 	));
+				dispatch ( filters.setup 	( normalised.entities.filters 		));
+				dispatch ( categories.setup ( normalised.entities.categories 	));
 				dispatch ( receive 	());
 
 			}).catch ( data => dispatch ( error ( data )));

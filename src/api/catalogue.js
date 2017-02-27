@@ -10,31 +10,23 @@ const api 		= {
 	headers 	= {
 		Accept 			: 'application/json' ,
 		'Content-Type' 	: 'application/json'
-	} ;
+	} ,
 
 	getURL 		= function ( parameters ) {
 
-		const 	filters = parameters.filters.join ( '+' ) 				,
-				instock = parameters.instock 	|| false 				,
-				offset 	= parameters.offset 	|| 50 					,
-				product = parameters.product 	|| null 				,
-				size 	= parameters.size 		|| 50 					,
-				sort 	= parameters.sort 		|| 'rating|ascending' 	;
+		const 	filters = parameters.filters.join ( '+' ) 	,
+				product = parameters.product 	|| null 	,
+				size 	= parameters.size 		|| 25 		;
+				//instock 	= parameters.instock 	|| false 				,
+				//offset 	= parameters.offset 	|| 50 					,
+				//sort 		= parameters.sort 		|| 'rating|ascending' 	;
 
-		let url 		= api.domain + api.endpoint + '?apikey=' + api.key 	;
-
-		if ( product ) {
-
-			url += '&product=' + product;
-		}
-
-		else {
+		let 	url 	= api.domain + api.endpoint + '?apikey=' + api.key 	;
 
 			url += '&filter=categories(' + filters + ')';
-			url += '&size=' 	+ size;
-			url += '&offset=' 	+ offset;
-			url += '&instock=' 	+ instock;
-		}
+			url += '&size=' + size;
+			// url += '&offset=' 	+ offset;
+			// url += '&instock=' 	+ instock;
 
 		return url;
 	};
@@ -44,8 +36,6 @@ export default {
 	get ( parameters ) {
 
 		const url = getURL ( parameters );
-
-		console.log ( 'CATALOGUE API' , url );
 
 		return fetch ( url 	, {
 			method 	: 'GET' ,

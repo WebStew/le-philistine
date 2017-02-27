@@ -1,27 +1,51 @@
 
-import React , 	{ 	Component 	} 	from 'react';
-import 			{ 	Text , 
-					View		} 	from 'react-native';
+import React , 	{ 	Component 			} 	from 'react';
+import 			{ 	Text 				, 
+					TouchableOpacity 	,
+					View				} 	from 'react-native';
+import 			{ 	Actions 			} 	from 'react-native-router-flux';
+import Image 								from '../utilities/image';
+import images 								from '../../configuration/images';
+import language 							from '../../configuration/language';
+import routes 								from '../../configuration/route-names';	
+import styleImage 							from '../../styles/images';
+import styleCatalogue 						from '../../styles/catalogue';
 
 export default class Product extends Component {
 
+	constructor ( props ) {
+
+		super ( props );
+		this.setProduct = this.setProduct.bind ( this );
+	}
+
+	setProduct () {
+		
+		Actions [ routes.catalogue.detail ] ({
+			product : this.props.product
+		});
+	}
+
 	render () {
 
-		//const filters = object.filter ( this.props.filters , filter => filter.on === true );
-
-		// <Unavailable 
-		// 	data 	= { filters 						}
-		// 	label 	= { language.filters.unavailable	}
-		// />
-		// <List 
-		// 	data			= { filters 			}
-		// 	setRow 			= { this.setFilter 		}
-		// 	setSeparator 	= { this.setSeparator 	}
-		// />
+		const product = this.props.product;
 
 		return (
+
 			<View>
-				<Text>This is a product</Text>
+				<TouchableOpacity 
+					style 	= { styleCatalogue.item 	} 
+					onPress = { this.setProduct 		}
+				>
+					<Text style={ styleCatalogue.text 	}>
+						{ product.name }
+					</Text>
+					<Image 
+						label 	= { language.actions.display.on + ' ' + product.name }
+						source 	= { images.chevrons.right 	}
+						style 	= { styleImage.icons.small 	}
+					/>
+				</TouchableOpacity>
 			</View>
 		);
 	}

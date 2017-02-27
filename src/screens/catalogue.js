@@ -28,19 +28,16 @@ export default connect (
 		const filters = Object.keys ( object.filter ( this.props.filters , filter => filter.on === true ));
 
 		this.props.dispatch ( actions.get ({ filters : filters }));
-
+		
 		this.renderProduct = this.renderProduct.bind ( this );
 	}
-
-	// componentWillUpdate () {
-	// }
 
 	renderProduct ( product ) {
 
 		return ( 
 			<Product 
-				product = { product 				}
-				dispatch = { this.props.dispatch 	}
+				product 	= { product 			}
+				dispatch 	= { this.props.dispatch	}
 			/>
 		);
 	}
@@ -64,7 +61,7 @@ export default connect (
 					size 	= 'large'
 				/>
 				<List 
-					data 			= { this.props.catalogue 			}
+					data 			= { this.props.catalogue.products 	}
 					loading 		= { this.props.catalogue.loading 	}
 					setRow 			= { this.renderProduct 				}
 					setSeparator 	= { this.setSeparator 				}
